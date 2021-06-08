@@ -5,13 +5,14 @@
 
 package dotty.tools.dotc.semanticdb
 import dotty.tools.dotc.semanticdb.internal._
+import scala.annotation.internal.sharable
 
-@SerialVersionUID(0L)
+
 final case class Location(
     uri: _root_.scala.Predef.String = "",
     range: _root_.scala.Option[dotty.tools.dotc.semanticdb.Range] = _root_.scala.None
-    )  extends SemanticdbGeneratedMessage {
-    @transient
+    )  extends SemanticdbGeneratedMessage  derives CanEqual {
+    @sharable
     private[this] var __serializedSizeCachedValue: _root_.scala.Int = 0
     private[this] def __computeSerializedValue(): _root_.scala.Int = {
       var __size = 0

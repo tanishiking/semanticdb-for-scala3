@@ -15,6 +15,14 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
   )
   override def fix(implicit doc: SyntacticDocument): Patch = {
     doc.tree.collect {
+      case annot @ Mod.Annot(Init(Type.Name(name), _, _))
+          if name == "transient" =>
+        Patch.replaceTree(annot, "@sharable")
+
+      case annot @ Mod.Annot(Init(Type.Name(name), _, _))
+          if name == "SerialVersionUID" =>
+        Patch.replaceTree(annot, "")
+
       case select @ Type.Select(_, name) if name.value == "TypeMapper" =>
         Patch.replaceTree(select, "SemanticdbTypeMapper")
 
@@ -51,14 +59,29 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
         Patch.replaceTree(d, "")
 
       // Remove extends from scalapb
-      case defn: Defn.Trait if extendsScalapbClass(defn.templ) =>
-        removeScalapbExtends(defn.templ)
+      case defn: Defn.Trait =>
+        val derive = deriveCanEqual(defn.templ)
+        if (extendsScalapbClass(defn.templ))
+          removeScalapbExtends(defn.templ) + derive
+        else derive
+      case defn: Defn.Class =>
+        val derive = deriveCanEqual(defn.templ)
+        if (extendsScalapbClass(defn.templ))
+          removeScalapbExtends(defn.templ) + derive
+        else derive
       case defn: Defn.Object if extendsScalapbClass(defn.templ) =>
-        removeScalapbExtends(defn.templ)
-      case defn: Defn.Class if extendsScalapbClass(defn.templ) =>
         removeScalapbExtends(defn.templ)
     }.asPatch
 
+  }
+
+  private def deriveCanEqual(templ: Template): Patch = {
+    templ.tokens
+      .find(tok => tok.isInstanceOf[Token.LeftBrace])
+      .map { lbrace =>
+        Patch.addLeft(lbrace, " derives CanEqual ")
+      }
+      .getOrElse(Patch.empty)
   }
 
   private def extendsScalapbClass(templ: Template): Boolean =

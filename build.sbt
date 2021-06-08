@@ -28,7 +28,12 @@ lazy val output = project
   .in(file("output"))
   .settings(
     name := "output",
-    scalaVersion := "3.0.0"
+    scalaVersion := "3.0.0",
+    unmanagedSources.in(Compile, scalafix) :=
+      unmanagedSources
+        .in(Compile)
+        .value
+        .filterNot(file => file.getParent().endsWith("internal"))
   )
   .dependsOn(`scalafix-rules` % ScalafixConfig)
 

@@ -5,13 +5,14 @@
 
 package dotty.tools.dotc.semanticdb
 import dotty.tools.dotc.semanticdb.internal._
+import scala.annotation.internal.sharable
 
-@SerialVersionUID(0L)
+
 final case class Documentation(
     message: _root_.scala.Predef.String = "",
     format: dotty.tools.dotc.semanticdb.Documentation.Format = dotty.tools.dotc.semanticdb.Documentation.Format.HTML
-    )  extends SemanticdbGeneratedMessage {
-    @transient
+    )  extends SemanticdbGeneratedMessage  derives CanEqual {
+    @sharable
     private[this] var __serializedSizeCachedValue: _root_.scala.Int = 0
     private[this] def __computeSerializedValue(): _root_.scala.Int = {
       var __size = 0
@@ -75,7 +76,7 @@ object Documentation  {
     message = "",
     format = dotty.tools.dotc.semanticdb.Documentation.Format.HTML
   )
-  sealed abstract class Format(val value: _root_.scala.Int)  extends SemanticdbGeneratedEnum {
+  sealed abstract class Format(val value: _root_.scala.Int)  extends SemanticdbGeneratedEnum  derives CanEqual {
     type EnumType = Format
     def isHtml: _root_.scala.Boolean = false
     def isMarkdown: _root_.scala.Boolean = false
@@ -89,42 +90,42 @@ object Documentation  {
   object Format  {
     sealed trait Recognized extends Format
     
-    @SerialVersionUID(0L)
+    
     case object HTML extends Format(0) with Format.Recognized {
       val index = 0
       val name = "HTML"
       override def isHtml: _root_.scala.Boolean = true
     }
     
-    @SerialVersionUID(0L)
+    
     case object MARKDOWN extends Format(1) with Format.Recognized {
       val index = 1
       val name = "MARKDOWN"
       override def isMarkdown: _root_.scala.Boolean = true
     }
     
-    @SerialVersionUID(0L)
+    
     case object JAVADOC extends Format(2) with Format.Recognized {
       val index = 2
       val name = "JAVADOC"
       override def isJavadoc: _root_.scala.Boolean = true
     }
     
-    @SerialVersionUID(0L)
+    
     case object SCALADOC extends Format(3) with Format.Recognized {
       val index = 3
       val name = "SCALADOC"
       override def isScaladoc: _root_.scala.Boolean = true
     }
     
-    @SerialVersionUID(0L)
+    
     case object KDOC extends Format(4) with Format.Recognized {
       val index = 4
       val name = "KDOC"
       override def isKdoc: _root_.scala.Boolean = true
     }
     
-    @SerialVersionUID(0L)
+    
     final case class Unrecognized(unrecognizedValue: _root_.scala.Int)  extends Format(unrecognizedValue) with SemanticdbUnrecognizedEnum
     
     lazy val values = scala.collection.immutable.Seq(HTML, MARKDOWN, JAVADOC, SCALADOC, KDOC)

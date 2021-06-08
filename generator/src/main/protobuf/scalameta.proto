@@ -7,6 +7,7 @@ import "scalapb/scalapb.proto";
 option (scalapb.options) = {
   preserve_unknown_fields: false
   import: "dotty.tools.dotc.semanticdb.internal._"
+  import: "scala.annotation.internal.sharable"
 };
 
 enum Schema {
