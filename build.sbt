@@ -29,9 +29,8 @@ lazy val output = project
   .settings(
     name := "output",
     scalaVersion := "3.0.0",
-    unmanagedSources.in(Compile, scalafix) :=
-      unmanagedSources
-        .in(Compile)
+    Compile / scalafix / unmanagedSources :=
+      (Compile / unmanagedSources)
         .value
         .filterNot(file => file.getParent().endsWith("internal"))
   )
