@@ -4,31 +4,38 @@ ThisBuild / scalafixScalaBinaryVersion :=
 ThisBuild / scalaVersion := "2.13.6"
 
 commands += Command.command("generate") { s =>
-  s"original/compile" ::
-    s"original/scalafix AdjustForScala3" ::
+  s"generator/protocGenerate" ::
+    s"output/scalafix AdjustForScala3" ::
     s"remove-scalameta-proto" ::
+    s"output/compile" ::
     s
 }
 commands += Command.command("clean-generated") { s =>
   IO.delete(
-    (original / Compile / baseDirectory).value / "src" / "main" / "scala" / "generated"
+    (output / Compile / baseDirectory).value / "src" / "main" / "scala" / "generated"
   )
   s
 }
 
 commands += Command.command("remove-scalameta-proto") { s =>
   IO.delete(
-    (original / Compile / baseDirectory).value / "src" / "main" / "scala" / "generated" / "dotty" / "tools" / "dotc" / "semanticdb" / "ScalametaProto.scala"
+    (output / Compile / baseDirectory).value / "src" / "main" / "scala" / "generated" / "dotty" / "tools" / "dotc" / "semanticdb" / "ScalametaProto.scala"
   )
   s
 }
 
-lazy val original = project
-  .in(file("original"))
+lazy val output = project
+  .in(file("output"))
   .settings(
-    name := "original",
-    // (optional) If you need scalapb/scalapb.proto or anything from
-    // google/protobuf/*.proto
+    name := "output",
+    scalaVersion := "3.0.0"
+  )
+  .dependsOn(`scalafix-rules` % ScalafixConfig)
+
+lazy val generator = project
+  .in(file("generator"))
+  .settings(
+    name := "generator",
     libraryDependencies ++= Seq(
       "com.thesamet.scalapb" %% "scalapb-runtime" % scalapb.compiler.Version.scalapbVersion % "protobuf"
     ),
@@ -37,10 +44,9 @@ lazy val original = project
         .gen(
           lenses = false,
           flatPackage = true
-        ) -> (Compile / baseDirectory).value / "src" / "main" / "scala" / "generated"
+        ) -> (Compile / baseDirectory).value / ".." / "output" / "src" / "main" / "scala" / "generated"
     )
   )
-  .dependsOn(`scalafix-rules` % ScalafixConfig)
 
 lazy val `scalafix-rules` = (project in file("scalafix/rules"))
   .disablePlugins(ScalafixPlugin)
