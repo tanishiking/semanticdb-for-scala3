@@ -1,4 +1,6 @@
 ## semanticdb-for-scala3
+![CI](https://github.com/tanishiking/semanticdb-for-scala3/actions/workflows/ci.yml/badge.svg)
+
 The project that generates Scala codes from semanticdb.proto for Scala3 compiler. Context: https://github.com/scalameta/scalameta/issues/2367
 
 - Generate Scala code from `semanticdb.proto` using Scalapb
