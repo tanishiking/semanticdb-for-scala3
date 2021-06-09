@@ -3,6 +3,13 @@ ThisBuild / scalafixScalaBinaryVersion :=
 
 ThisBuild / scalaVersion := "2.13.6"
 
+commands += Command.command("ci") { s =>
+  s"clean" ::
+    s"clean-generated" ::
+    s"generate" ::
+    s
+}
+
 commands += Command.command("generate") { s =>
   s"generator/protocGenerate" ::
     s"output/scalafix AdjustForScala3" ::
@@ -30,8 +37,7 @@ lazy val output = project
     name := "output",
     scalaVersion := "3.0.0",
     Compile / scalafix / unmanagedSources :=
-      (Compile / unmanagedSources)
-        .value
+      (Compile / unmanagedSources).value
         .filterNot(file => file.getParent().endsWith("internal"))
   )
   .dependsOn(`scalafix-rules` % ScalafixConfig)
