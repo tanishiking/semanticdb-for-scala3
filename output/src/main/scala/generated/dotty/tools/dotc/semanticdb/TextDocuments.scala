@@ -48,9 +48,24 @@ final case class TextDocuments(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.TextDocuments])
 }
 
-object TextDocuments  {
-  
-  
+object TextDocuments  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TextDocuments] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TextDocuments] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TextDocuments = {
+    val __documents: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.TextDocument] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.TextDocument]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __documents += LiteParser.readMessage[dotty.tools.dotc.semanticdb.TextDocument](_input__)
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TextDocuments(
+        documents = __documents.result()
+    )
+  }
   
   
   

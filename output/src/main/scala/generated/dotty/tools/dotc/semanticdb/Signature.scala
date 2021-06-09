@@ -116,9 +116,30 @@ final case class SignatureMessage(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Signature])
 }
 
-object SignatureMessage  {
-  
-  
+object SignatureMessage  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SignatureMessage] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SignatureMessage] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.SignatureMessage = {
+    var __sealedValue: dotty.tools.dotc.semanticdb.SignatureMessage.SealedValue = dotty.tools.dotc.semanticdb.SignatureMessage.SealedValue.Empty
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.SignatureMessage.SealedValue.ClassSignature(__sealedValue.classSignature.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ClassSignature](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.SignatureMessage.SealedValue.MethodSignature(__sealedValue.methodSignature.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.MethodSignature](_input__))(LiteParser.readMessage(_input__, _)))
+        case 26 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.SignatureMessage.SealedValue.TypeSignature(__sealedValue.typeSignature.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeSignature](_input__))(LiteParser.readMessage(_input__, _)))
+        case 34 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.SignatureMessage.SealedValue.ValueSignature(__sealedValue.valueSignature.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ValueSignature](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.SignatureMessage(
+        sealedValue = __sealedValue
+    )
+  }
   
   
   
@@ -277,9 +298,36 @@ final case class ClassSignature(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ClassSignature])
 }
 
-object ClassSignature  {
-  
-  
+object ClassSignature  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ClassSignature] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ClassSignature] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ClassSignature = {
+    var __typeParameters: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    val __parents: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type]
+    var __self: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __declarations: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __typeParameters = Option(__typeParameters.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __parents += dotty.tools.dotc.semanticdb.ClassSignature._typemapper_parents.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))
+        case 26 =>
+          __self = _root_.scala.Some(__self.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 34 =>
+          __declarations = Option(__declarations.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ClassSignature(
+        typeParameters = __typeParameters,
+        parents = __parents.result(),
+        self = dotty.tools.dotc.semanticdb.ClassSignature._typemapper_self.toCustom(__self.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        declarations = __declarations
+    )
+  }
   
   
   
@@ -386,9 +434,32 @@ final case class MethodSignature(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.MethodSignature])
 }
 
-object MethodSignature  {
-  
-  
+object MethodSignature  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.MethodSignature] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.MethodSignature] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.MethodSignature = {
+    var __typeParameters: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    val __parameterLists: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Scope] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Scope]
+    var __returnType: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __typeParameters = Option(__typeParameters.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __parameterLists += LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__)
+        case 26 =>
+          __returnType = _root_.scala.Some(__returnType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.MethodSignature(
+        typeParameters = __typeParameters,
+        parameterLists = __parameterLists.result(),
+        returnType = dotty.tools.dotc.semanticdb.MethodSignature._typemapper_returnType.toCustom(__returnType.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -491,9 +562,32 @@ final case class TypeSignature(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.TypeSignature])
 }
 
-object TypeSignature  {
-  
-  
+object TypeSignature  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeSignature] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeSignature] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TypeSignature = {
+    var __typeParameters: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    var __lowerBound: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __upperBound: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __typeParameters = Option(__typeParameters.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __lowerBound = _root_.scala.Some(__lowerBound.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 26 =>
+          __upperBound = _root_.scala.Some(__upperBound.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TypeSignature(
+        typeParameters = __typeParameters,
+        lowerBound = dotty.tools.dotc.semanticdb.TypeSignature._typemapper_lowerBound.toCustom(__lowerBound.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        upperBound = dotty.tools.dotc.semanticdb.TypeSignature._typemapper_upperBound.toCustom(__upperBound.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -567,9 +661,24 @@ final case class ValueSignature(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ValueSignature])
 }
 
-object ValueSignature  {
-  
-  
+object ValueSignature  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ValueSignature] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ValueSignature] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ValueSignature = {
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ValueSignature(
+        tpe = dotty.tools.dotc.semanticdb.ValueSignature._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   

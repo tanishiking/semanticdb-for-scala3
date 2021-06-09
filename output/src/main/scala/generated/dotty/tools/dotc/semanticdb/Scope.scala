@@ -61,9 +61,28 @@ final case class Scope(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Scope])
 }
 
-object Scope  {
-  
-  
+object Scope  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Scope] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Scope] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Scope = {
+    val __symlinks: _root_.scala.collection.immutable.VectorBuilder[_root_.scala.Predef.String] = new _root_.scala.collection.immutable.VectorBuilder[_root_.scala.Predef.String]
+    val __hardlinks: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.SymbolInformation] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.SymbolInformation]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __symlinks += _input__.readStringRequireUtf8()
+        case 18 =>
+          __hardlinks += LiteParser.readMessage[dotty.tools.dotc.semanticdb.SymbolInformation](_input__)
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Scope(
+        symlinks = __symlinks.result(),
+        hardlinks = __hardlinks.result()
+    )
+  }
   
   
   

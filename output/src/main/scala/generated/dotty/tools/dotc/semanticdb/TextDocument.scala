@@ -168,9 +168,56 @@ final case class TextDocument(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.TextDocument])
 }
 
-object TextDocument  {
-  
-  
+object TextDocument  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TextDocument] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TextDocument] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TextDocument = {
+    var __schema: dotty.tools.dotc.semanticdb.Schema = dotty.tools.dotc.semanticdb.Schema.LEGACY
+    var __uri: _root_.scala.Predef.String = ""
+    var __text: _root_.scala.Predef.String = ""
+    var __md5: _root_.scala.Predef.String = ""
+    var __language: dotty.tools.dotc.semanticdb.Language = dotty.tools.dotc.semanticdb.Language.UNKNOWN_LANGUAGE
+    val __symbols: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.SymbolInformation] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.SymbolInformation]
+    val __occurrences: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.SymbolOccurrence] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.SymbolOccurrence]
+    val __diagnostics: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Diagnostic] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Diagnostic]
+    val __synthetics: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Synthetic] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Synthetic]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __schema = dotty.tools.dotc.semanticdb.Schema.fromValue(_input__.readEnum())
+        case 18 =>
+          __uri = _input__.readStringRequireUtf8()
+        case 26 =>
+          __text = _input__.readStringRequireUtf8()
+        case 90 =>
+          __md5 = _input__.readStringRequireUtf8()
+        case 80 =>
+          __language = dotty.tools.dotc.semanticdb.Language.fromValue(_input__.readEnum())
+        case 42 =>
+          __symbols += LiteParser.readMessage[dotty.tools.dotc.semanticdb.SymbolInformation](_input__)
+        case 50 =>
+          __occurrences += LiteParser.readMessage[dotty.tools.dotc.semanticdb.SymbolOccurrence](_input__)
+        case 58 =>
+          __diagnostics += LiteParser.readMessage[dotty.tools.dotc.semanticdb.Diagnostic](_input__)
+        case 98 =>
+          __synthetics += LiteParser.readMessage[dotty.tools.dotc.semanticdb.Synthetic](_input__)
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TextDocument(
+        schema = __schema,
+        uri = __uri,
+        text = __text,
+        md5 = __md5,
+        language = __language,
+        symbols = __symbols.result(),
+        occurrences = __occurrences.result(),
+        diagnostics = __diagnostics.result(),
+        synthetics = __synthetics.result()
+    )
+  }
   
   
   

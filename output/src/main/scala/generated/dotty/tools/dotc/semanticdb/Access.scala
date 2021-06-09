@@ -158,9 +158,36 @@ final case class AccessMessage(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Access])
 }
 
-object AccessMessage  {
-  
-  
+object AccessMessage  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.AccessMessage] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.AccessMessage] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.AccessMessage = {
+    var __sealedValue: dotty.tools.dotc.semanticdb.AccessMessage.SealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.Empty
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.PrivateAccess(__sealedValue.privateAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.PrivateAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.PrivateThisAccess(__sealedValue.privateThisAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.PrivateThisAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case 26 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.PrivateWithinAccess(__sealedValue.privateWithinAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.PrivateWithinAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case 34 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.ProtectedAccess(__sealedValue.protectedAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ProtectedAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case 42 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.ProtectedThisAccess(__sealedValue.protectedThisAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ProtectedThisAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case 50 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.ProtectedWithinAccess(__sealedValue.protectedWithinAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ProtectedWithinAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case 58 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.PublicAccess(__sealedValue.publicAccess.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.PublicAccess](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.AccessMessage(
+        sealedValue = __sealedValue
+    )
+  }
   
   
   
@@ -276,9 +303,20 @@ final case class PrivateAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.PrivateAccess])
 }
 
-object PrivateAccess  {
-  
-  
+object PrivateAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PrivateAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PrivateAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.PrivateAccess = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.PrivateAccess(
+    )
+  }
   
   
   
@@ -306,9 +344,20 @@ final case class PrivateThisAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.PrivateThisAccess])
 }
 
-object PrivateThisAccess  {
-  
-  
+object PrivateThisAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PrivateThisAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PrivateThisAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.PrivateThisAccess = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.PrivateThisAccess(
+    )
+  }
   
   
   
@@ -364,9 +413,24 @@ final case class PrivateWithinAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.PrivateWithinAccess])
 }
 
-object PrivateWithinAccess  {
-  
-  
+object PrivateWithinAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PrivateWithinAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PrivateWithinAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.PrivateWithinAccess = {
+    var __symbol: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.PrivateWithinAccess(
+        symbol = __symbol
+    )
+  }
   
   
   
@@ -398,9 +462,20 @@ final case class ProtectedAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ProtectedAccess])
 }
 
-object ProtectedAccess  {
-  
-  
+object ProtectedAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ProtectedAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ProtectedAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ProtectedAccess = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ProtectedAccess(
+    )
+  }
   
   
   
@@ -428,9 +503,20 @@ final case class ProtectedThisAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ProtectedThisAccess])
 }
 
-object ProtectedThisAccess  {
-  
-  
+object ProtectedThisAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ProtectedThisAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ProtectedThisAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ProtectedThisAccess = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ProtectedThisAccess(
+    )
+  }
   
   
   
@@ -486,9 +572,24 @@ final case class ProtectedWithinAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ProtectedWithinAccess])
 }
 
-object ProtectedWithinAccess  {
-  
-  
+object ProtectedWithinAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ProtectedWithinAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ProtectedWithinAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ProtectedWithinAccess = {
+    var __symbol: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ProtectedWithinAccess(
+        symbol = __symbol
+    )
+  }
   
   
   
@@ -520,9 +621,20 @@ final case class PublicAccess(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.PublicAccess])
 }
 
-object PublicAccess  {
-  
-  
+object PublicAccess  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PublicAccess] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.PublicAccess] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.PublicAccess = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.PublicAccess(
+    )
+  }
   
   
   

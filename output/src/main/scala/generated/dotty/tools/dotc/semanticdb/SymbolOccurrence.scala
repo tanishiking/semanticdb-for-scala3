@@ -77,9 +77,32 @@ final case class SymbolOccurrence(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.SymbolOccurrence])
 }
 
-object SymbolOccurrence  {
-  
-  
+object SymbolOccurrence  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SymbolOccurrence] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SymbolOccurrence] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.SymbolOccurrence = {
+    var __range: _root_.scala.Option[dotty.tools.dotc.semanticdb.Range] = _root_.scala.None
+    var __symbol: _root_.scala.Predef.String = ""
+    var __role: dotty.tools.dotc.semanticdb.SymbolOccurrence.Role = dotty.tools.dotc.semanticdb.SymbolOccurrence.Role.UNKNOWN_ROLE
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __range = Option(__range.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Range](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case 24 =>
+          __role = dotty.tools.dotc.semanticdb.SymbolOccurrence.Role.fromValue(_input__.readEnum())
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.SymbolOccurrence(
+        range = __range,
+        symbol = __symbol,
+        role = __role
+    )
+  }
   
   
   

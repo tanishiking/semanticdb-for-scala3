@@ -62,9 +62,28 @@ final case class Location(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Location])
 }
 
-object Location  {
-  
-  
+object Location  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Location] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Location] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Location = {
+    var __uri: _root_.scala.Predef.String = ""
+    var __range: _root_.scala.Option[dotty.tools.dotc.semanticdb.Range] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __uri = _input__.readStringRequireUtf8()
+        case 18 =>
+          __range = Option(__range.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Range](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Location(
+        uri = __uri,
+        range = __range
+    )
+  }
   
   
   

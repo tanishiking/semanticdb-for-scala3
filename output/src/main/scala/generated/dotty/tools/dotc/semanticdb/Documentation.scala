@@ -63,9 +63,28 @@ final case class Documentation(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Documentation])
 }
 
-object Documentation  {
-  
-  
+object Documentation  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Documentation] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Documentation] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Documentation = {
+    var __message: _root_.scala.Predef.String = ""
+    var __format: dotty.tools.dotc.semanticdb.Documentation.Format = dotty.tools.dotc.semanticdb.Documentation.Format.HTML
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __message = _input__.readStringRequireUtf8()
+        case 16 =>
+          __format = dotty.tools.dotc.semanticdb.Documentation.Format.fromValue(_input__.readEnum())
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Documentation(
+        message = __message,
+        format = __format
+    )
+  }
   
   
   

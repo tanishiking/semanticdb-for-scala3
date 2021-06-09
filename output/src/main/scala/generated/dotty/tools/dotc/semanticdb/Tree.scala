@@ -172,9 +172,38 @@ final case class TreeMessage(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Tree])
 }
 
-object TreeMessage  {
-  
-  
+object TreeMessage  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TreeMessage] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TreeMessage] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TreeMessage = {
+    var __sealedValue: dotty.tools.dotc.semanticdb.TreeMessage.SealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.Empty
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.ApplyTree(__sealedValue.applyTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ApplyTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.FunctionTree(__sealedValue.functionTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.FunctionTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 26 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.IdTree(__sealedValue.idTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.IdTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 34 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.LiteralTree(__sealedValue.literalTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.LiteralTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 42 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.MacroExpansionTree(__sealedValue.macroExpansionTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.MacroExpansionTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 50 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.OriginalTree(__sealedValue.originalTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.OriginalTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 58 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.SelectTree(__sealedValue.selectTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.SelectTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case 66 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TreeMessage.SealedValue.TypeApplyTree(__sealedValue.typeApplyTree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeApplyTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TreeMessage(
+        sealedValue = __sealedValue
+    )
+  }
   
   
   
@@ -345,9 +374,28 @@ final case class ApplyTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ApplyTree])
 }
 
-object ApplyTree  {
-  
-  
+object ApplyTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ApplyTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ApplyTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ApplyTree = {
+    var __function: _root_.scala.Option[dotty.tools.dotc.semanticdb.TreeMessage] = _root_.scala.None
+    val __arguments: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Tree] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Tree]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __function = _root_.scala.Some(__function.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __arguments += dotty.tools.dotc.semanticdb.ApplyTree._typemapper_arguments.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ApplyTree(
+        function = dotty.tools.dotc.semanticdb.ApplyTree._typemapper_function.toCustom(__function.getOrElse(dotty.tools.dotc.semanticdb.TreeMessage.defaultInstance)),
+        arguments = __arguments.result()
+    )
+  }
   
   
   
@@ -432,9 +480,28 @@ final case class FunctionTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.FunctionTree])
 }
 
-object FunctionTree  {
-  
-  
+object FunctionTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.FunctionTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.FunctionTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.FunctionTree = {
+    val __parameters: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.IdTree] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.IdTree]
+    var __body: _root_.scala.Option[dotty.tools.dotc.semanticdb.TreeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __parameters += LiteParser.readMessage[dotty.tools.dotc.semanticdb.IdTree](_input__)
+        case 18 =>
+          __body = _root_.scala.Some(__body.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.FunctionTree(
+        parameters = __parameters.result(),
+        body = dotty.tools.dotc.semanticdb.FunctionTree._typemapper_body.toCustom(__body.getOrElse(dotty.tools.dotc.semanticdb.TreeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -500,9 +567,24 @@ final case class IdTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.IdTree])
 }
 
-object IdTree  {
-  
-  
+object IdTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.IdTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.IdTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.IdTree = {
+    var __symbol: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.IdTree(
+        symbol = __symbol
+    )
+  }
   
   
   
@@ -564,9 +646,24 @@ final case class LiteralTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.LiteralTree])
 }
 
-object LiteralTree  {
-  
-  
+object LiteralTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.LiteralTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.LiteralTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.LiteralTree = {
+    var __constant: _root_.scala.Option[dotty.tools.dotc.semanticdb.ConstantMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __constant = _root_.scala.Some(__constant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ConstantMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.LiteralTree(
+        constant = dotty.tools.dotc.semanticdb.LiteralTree._typemapper_constant.toCustom(__constant.getOrElse(dotty.tools.dotc.semanticdb.ConstantMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -647,9 +744,28 @@ final case class MacroExpansionTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.MacroExpansionTree])
 }
 
-object MacroExpansionTree  {
-  
-  
+object MacroExpansionTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.MacroExpansionTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.MacroExpansionTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.MacroExpansionTree = {
+    var __beforeExpansion: _root_.scala.Option[dotty.tools.dotc.semanticdb.TreeMessage] = _root_.scala.None
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __beforeExpansion = _root_.scala.Some(__beforeExpansion.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.MacroExpansionTree(
+        beforeExpansion = dotty.tools.dotc.semanticdb.MacroExpansionTree._typemapper_beforeExpansion.toCustom(__beforeExpansion.getOrElse(dotty.tools.dotc.semanticdb.TreeMessage.defaultInstance)),
+        tpe = dotty.tools.dotc.semanticdb.MacroExpansionTree._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -716,9 +832,24 @@ final case class OriginalTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.OriginalTree])
 }
 
-object OriginalTree  {
-  
-  
+object OriginalTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.OriginalTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.OriginalTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.OriginalTree = {
+    var __range: _root_.scala.Option[dotty.tools.dotc.semanticdb.Range] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __range = Option(__range.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Range](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.OriginalTree(
+        range = __range
+    )
+  }
   
   
   
@@ -794,9 +925,28 @@ final case class SelectTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.SelectTree])
 }
 
-object SelectTree  {
-  
-  
+object SelectTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SelectTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SelectTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.SelectTree = {
+    var __qualifier: _root_.scala.Option[dotty.tools.dotc.semanticdb.TreeMessage] = _root_.scala.None
+    var __id: _root_.scala.Option[dotty.tools.dotc.semanticdb.IdTree] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __qualifier = _root_.scala.Some(__qualifier.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __id = Option(__id.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.IdTree](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.SelectTree(
+        qualifier = dotty.tools.dotc.semanticdb.SelectTree._typemapper_qualifier.toCustom(__qualifier.getOrElse(dotty.tools.dotc.semanticdb.TreeMessage.defaultInstance)),
+        id = __id
+    )
+  }
   
   
   
@@ -879,9 +1029,28 @@ final case class TypeApplyTree(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.TypeApplyTree])
 }
 
-object TypeApplyTree  {
-  
-  
+object TypeApplyTree  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeApplyTree] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeApplyTree] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TypeApplyTree = {
+    var __function: _root_.scala.Option[dotty.tools.dotc.semanticdb.TreeMessage] = _root_.scala.None
+    val __typeArguments: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __function = _root_.scala.Some(__function.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __typeArguments += dotty.tools.dotc.semanticdb.TypeApplyTree._typemapper_typeArguments.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TypeApplyTree(
+        function = dotty.tools.dotc.semanticdb.TypeApplyTree._typemapper_function.toCustom(__function.getOrElse(dotty.tools.dotc.semanticdb.TreeMessage.defaultInstance)),
+        typeArguments = __typeArguments.result()
+    )
+  }
   
   
   

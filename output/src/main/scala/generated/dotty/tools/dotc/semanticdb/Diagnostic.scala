@@ -77,9 +77,32 @@ final case class Diagnostic(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Diagnostic])
 }
 
-object Diagnostic  {
-  
-  
+object Diagnostic  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Diagnostic] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Diagnostic] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Diagnostic = {
+    var __range: _root_.scala.Option[dotty.tools.dotc.semanticdb.Range] = _root_.scala.None
+    var __severity: dotty.tools.dotc.semanticdb.Diagnostic.Severity = dotty.tools.dotc.semanticdb.Diagnostic.Severity.UNKNOWN_SEVERITY
+    var __message: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __range = Option(__range.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Range](_input__))(LiteParser.readMessage(_input__, _)))
+        case 16 =>
+          __severity = dotty.tools.dotc.semanticdb.Diagnostic.Severity.fromValue(_input__.readEnum())
+        case 26 =>
+          __message = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Diagnostic(
+        range = __range,
+        severity = __severity,
+        message = __message
+    )
+  }
   
   
   

@@ -256,9 +256,50 @@ final case class TypeMessage(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Type])
 }
 
-object TypeMessage  {
-  
-  
+object TypeMessage  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeMessage] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeMessage] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TypeMessage = {
+    var __sealedValue: dotty.tools.dotc.semanticdb.TypeMessage.SealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.Empty
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 18 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.TypeRef(__sealedValue.typeRef.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeRef](_input__))(LiteParser.readMessage(_input__, _)))
+        case 162 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.SingleType(__sealedValue.singleType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.SingleType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 170 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.ThisType(__sealedValue.thisType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ThisType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 178 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.SuperType(__sealedValue.superType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.SuperType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 186 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.ConstantType(__sealedValue.constantType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ConstantType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 138 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.IntersectionType(__sealedValue.intersectionType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.IntersectionType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 146 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.UnionType(__sealedValue.unionType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.UnionType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 154 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.WithType(__sealedValue.withType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.WithType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 58 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.StructuralType(__sealedValue.structuralType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.StructuralType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 66 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.AnnotatedType(__sealedValue.annotatedType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.AnnotatedType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 74 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.ExistentialType(__sealedValue.existentialType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ExistentialType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 82 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.UniversalType(__sealedValue.universalType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.UniversalType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 106 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.ByNameType(__sealedValue.byNameType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ByNameType](_input__))(LiteParser.readMessage(_input__, _)))
+        case 114 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.TypeMessage.SealedValue.RepeatedType(__sealedValue.repeatedType.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.RepeatedType](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TypeMessage(
+        sealedValue = __sealedValue
+    )
+  }
   
   
   
@@ -504,9 +545,32 @@ final case class TypeRef(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.TypeRef])
 }
 
-object TypeRef  {
-  
-  
+object TypeRef  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeRef] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.TypeRef] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.TypeRef = {
+    var __prefix: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __symbol: _root_.scala.Predef.String = ""
+    val __typeArguments: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __prefix = _root_.scala.Some(__prefix.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case 26 =>
+          __typeArguments += dotty.tools.dotc.semanticdb.TypeRef._typemapper_typeArguments.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.TypeRef(
+        prefix = dotty.tools.dotc.semanticdb.TypeRef._typemapper_prefix.toCustom(__prefix.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        symbol = __symbol,
+        typeArguments = __typeArguments.result()
+    )
+  }
   
   
   
@@ -595,9 +659,28 @@ final case class SingleType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.SingleType])
 }
 
-object SingleType  {
-  
-  
+object SingleType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SingleType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SingleType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.SingleType = {
+    var __prefix: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __symbol: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __prefix = _root_.scala.Some(__prefix.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.SingleType(
+        prefix = dotty.tools.dotc.semanticdb.SingleType._typemapper_prefix.toCustom(__prefix.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        symbol = __symbol
+    )
+  }
   
   
   
@@ -663,9 +746,24 @@ final case class ThisType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ThisType])
 }
 
-object ThisType  {
-  
-  
+object ThisType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ThisType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ThisType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ThisType = {
+    var __symbol: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ThisType(
+        symbol = __symbol
+    )
+  }
   
   
   
@@ -742,9 +840,28 @@ final case class SuperType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.SuperType])
 }
 
-object SuperType  {
-  
-  
+object SuperType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SuperType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SuperType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.SuperType = {
+    var __prefix: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __symbol: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __prefix = _root_.scala.Some(__prefix.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.SuperType(
+        prefix = dotty.tools.dotc.semanticdb.SuperType._typemapper_prefix.toCustom(__prefix.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        symbol = __symbol
+    )
+  }
   
   
   
@@ -812,9 +929,24 @@ final case class ConstantType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ConstantType])
 }
 
-object ConstantType  {
-  
-  
+object ConstantType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ConstantType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ConstantType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ConstantType = {
+    var __constant: _root_.scala.Option[dotty.tools.dotc.semanticdb.ConstantMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __constant = _root_.scala.Some(__constant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ConstantMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ConstantType(
+        constant = dotty.tools.dotc.semanticdb.ConstantType._typemapper_constant.toCustom(__constant.getOrElse(dotty.tools.dotc.semanticdb.ConstantMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -876,9 +1008,24 @@ final case class IntersectionType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.IntersectionType])
 }
 
-object IntersectionType  {
-  
-  
+object IntersectionType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.IntersectionType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.IntersectionType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.IntersectionType = {
+    val __types: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __types += dotty.tools.dotc.semanticdb.IntersectionType._typemapper_types.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.IntersectionType(
+        types = __types.result()
+    )
+  }
   
   
   
@@ -940,9 +1087,24 @@ final case class UnionType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.UnionType])
 }
 
-object UnionType  {
-  
-  
+object UnionType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.UnionType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.UnionType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.UnionType = {
+    val __types: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __types += dotty.tools.dotc.semanticdb.UnionType._typemapper_types.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.UnionType(
+        types = __types.result()
+    )
+  }
   
   
   
@@ -1004,9 +1166,24 @@ final case class WithType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.WithType])
 }
 
-object WithType  {
-  
-  
+object WithType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.WithType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.WithType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.WithType = {
+    val __types: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Type]
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __types += dotty.tools.dotc.semanticdb.WithType._typemapper_types.toCustom(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.WithType(
+        types = __types.result()
+    )
+  }
   
   
   
@@ -1084,9 +1261,28 @@ final case class StructuralType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.StructuralType])
 }
 
-object StructuralType  {
-  
-  
+object StructuralType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.StructuralType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.StructuralType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.StructuralType = {
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __declarations: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 34 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 42 =>
+          __declarations = Option(__declarations.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.StructuralType(
+        tpe = dotty.tools.dotc.semanticdb.StructuralType._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        declarations = __declarations
+    )
+  }
   
   
   
@@ -1169,9 +1365,28 @@ final case class AnnotatedType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.AnnotatedType])
 }
 
-object AnnotatedType  {
-  
-  
+object AnnotatedType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.AnnotatedType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.AnnotatedType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.AnnotatedType = {
+    val __annotations: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Annotation] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Annotation]
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 26 =>
+          __annotations += LiteParser.readMessage[dotty.tools.dotc.semanticdb.Annotation](_input__)
+        case 10 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.AnnotatedType(
+        annotations = __annotations.result(),
+        tpe = dotty.tools.dotc.semanticdb.AnnotatedType._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -1253,9 +1468,28 @@ final case class ExistentialType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ExistentialType])
 }
 
-object ExistentialType  {
-  
-  
+object ExistentialType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ExistentialType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ExistentialType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ExistentialType = {
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var __declarations: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 26 =>
+          __declarations = Option(__declarations.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ExistentialType(
+        tpe = dotty.tools.dotc.semanticdb.ExistentialType._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance)),
+        declarations = __declarations
+    )
+  }
   
   
   
@@ -1337,9 +1571,28 @@ final case class UniversalType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.UniversalType])
 }
 
-object UniversalType  {
-  
-  
+object UniversalType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.UniversalType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.UniversalType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.UniversalType = {
+    var __typeParameters: _root_.scala.Option[dotty.tools.dotc.semanticdb.Scope] = _root_.scala.None
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 26 =>
+          __typeParameters = Option(__typeParameters.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Scope](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.UniversalType(
+        typeParameters = __typeParameters,
+        tpe = dotty.tools.dotc.semanticdb.UniversalType._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -1407,9 +1660,24 @@ final case class ByNameType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ByNameType])
 }
 
-object ByNameType  {
-  
-  
+object ByNameType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ByNameType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ByNameType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ByNameType = {
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ByNameType(
+        tpe = dotty.tools.dotc.semanticdb.ByNameType._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
@@ -1473,9 +1741,24 @@ final case class RepeatedType(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.RepeatedType])
 }
 
-object RepeatedType  {
-  
-  
+object RepeatedType  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.RepeatedType] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.RepeatedType] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.RepeatedType = {
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.RepeatedType(
+        tpe = dotty.tools.dotc.semanticdb.RepeatedType._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   

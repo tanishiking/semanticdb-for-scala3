@@ -184,9 +184,60 @@ final case class SymbolInformation(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.SymbolInformation])
 }
 
-object SymbolInformation  {
-  
-  
+object SymbolInformation  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SymbolInformation] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.SymbolInformation] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.SymbolInformation = {
+    var __symbol: _root_.scala.Predef.String = ""
+    var __language: dotty.tools.dotc.semanticdb.Language = dotty.tools.dotc.semanticdb.Language.UNKNOWN_LANGUAGE
+    var __kind: dotty.tools.dotc.semanticdb.SymbolInformation.Kind = dotty.tools.dotc.semanticdb.SymbolInformation.Kind.UNKNOWN_KIND
+    var __properties: _root_.scala.Int = 0
+    var __displayName: _root_.scala.Predef.String = ""
+    var __signature: _root_.scala.Option[dotty.tools.dotc.semanticdb.SignatureMessage] = _root_.scala.None
+    val __annotations: _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Annotation] = new _root_.scala.collection.immutable.VectorBuilder[dotty.tools.dotc.semanticdb.Annotation]
+    var __access: _root_.scala.Option[dotty.tools.dotc.semanticdb.AccessMessage] = _root_.scala.None
+    val __overriddenSymbols: _root_.scala.collection.immutable.VectorBuilder[_root_.scala.Predef.String] = new _root_.scala.collection.immutable.VectorBuilder[_root_.scala.Predef.String]
+    var __documentation: _root_.scala.Option[dotty.tools.dotc.semanticdb.Documentation] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __symbol = _input__.readStringRequireUtf8()
+        case 128 =>
+          __language = dotty.tools.dotc.semanticdb.Language.fromValue(_input__.readEnum())
+        case 24 =>
+          __kind = dotty.tools.dotc.semanticdb.SymbolInformation.Kind.fromValue(_input__.readEnum())
+        case 32 =>
+          __properties = _input__.readInt32()
+        case 42 =>
+          __displayName = _input__.readStringRequireUtf8()
+        case 138 =>
+          __signature = _root_.scala.Some(__signature.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.SignatureMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 106 =>
+          __annotations += LiteParser.readMessage[dotty.tools.dotc.semanticdb.Annotation](_input__)
+        case 146 =>
+          __access = _root_.scala.Some(__access.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.AccessMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case 154 =>
+          __overriddenSymbols += _input__.readStringRequireUtf8()
+        case 162 =>
+          __documentation = Option(__documentation.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Documentation](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.SymbolInformation(
+        symbol = __symbol,
+        language = __language,
+        kind = __kind,
+        properties = __properties,
+        displayName = __displayName,
+        signature = dotty.tools.dotc.semanticdb.SymbolInformation._typemapper_signature.toCustom(__signature.getOrElse(dotty.tools.dotc.semanticdb.SignatureMessage.defaultInstance)),
+        annotations = __annotations.result(),
+        access = dotty.tools.dotc.semanticdb.SymbolInformation._typemapper_access.toCustom(__access.getOrElse(dotty.tools.dotc.semanticdb.AccessMessage.defaultInstance)),
+        overriddenSymbols = __overriddenSymbols.result(),
+        documentation = __documentation
+    )
+  }
   
   
   

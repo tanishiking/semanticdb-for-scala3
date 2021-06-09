@@ -214,9 +214,44 @@ final case class ConstantMessage(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Constant])
 }
 
-object ConstantMessage  {
-  
-  
+object ConstantMessage  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ConstantMessage] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ConstantMessage] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ConstantMessage = {
+    var __sealedValue: dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.Empty
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.UnitConstant(__sealedValue.unitConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.UnitConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.BooleanConstant(__sealedValue.booleanConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.BooleanConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 26 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.ByteConstant(__sealedValue.byteConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ByteConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 34 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.ShortConstant(__sealedValue.shortConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.ShortConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 42 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.CharConstant(__sealedValue.charConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.CharConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 50 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.IntConstant(__sealedValue.intConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.IntConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 58 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.LongConstant(__sealedValue.longConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.LongConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 66 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.FloatConstant(__sealedValue.floatConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.FloatConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 74 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.DoubleConstant(__sealedValue.doubleConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.DoubleConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 82 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.StringConstant(__sealedValue.stringConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.StringConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case 90 =>
+          __sealedValue = dotty.tools.dotc.semanticdb.ConstantMessage.SealedValue.NullConstant(__sealedValue.nullConstant.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.NullConstant](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ConstantMessage(
+        sealedValue = __sealedValue
+    )
+  }
   
   
   
@@ -372,9 +407,20 @@ final case class UnitConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.UnitConstant])
 }
 
-object UnitConstant  {
-  
-  
+object UnitConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.UnitConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.UnitConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.UnitConstant = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.UnitConstant(
+    )
+  }
   
   
   
@@ -430,9 +476,24 @@ final case class BooleanConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.BooleanConstant])
 }
 
-object BooleanConstant  {
-  
-  
+object BooleanConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.BooleanConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.BooleanConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.BooleanConstant = {
+    var __value: _root_.scala.Boolean = false
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __value = _input__.readBool()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.BooleanConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -492,9 +553,24 @@ final case class ByteConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ByteConstant])
 }
 
-object ByteConstant  {
-  
-  
+object ByteConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ByteConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ByteConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ByteConstant = {
+    var __value: _root_.scala.Int = 0
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __value = _input__.readInt32()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ByteConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -554,9 +630,24 @@ final case class ShortConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.ShortConstant])
 }
 
-object ShortConstant  {
-  
-  
+object ShortConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ShortConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.ShortConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.ShortConstant = {
+    var __value: _root_.scala.Int = 0
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __value = _input__.readInt32()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.ShortConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -616,9 +707,24 @@ final case class CharConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.CharConstant])
 }
 
-object CharConstant  {
-  
-  
+object CharConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.CharConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.CharConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.CharConstant = {
+    var __value: _root_.scala.Int = 0
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __value = _input__.readInt32()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.CharConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -678,9 +784,24 @@ final case class IntConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.IntConstant])
 }
 
-object IntConstant  {
-  
-  
+object IntConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.IntConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.IntConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.IntConstant = {
+    var __value: _root_.scala.Int = 0
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __value = _input__.readInt32()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.IntConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -740,9 +861,24 @@ final case class LongConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.LongConstant])
 }
 
-object LongConstant  {
-  
-  
+object LongConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.LongConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.LongConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.LongConstant = {
+    var __value: _root_.scala.Long = 0L
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __value = _input__.readInt64()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.LongConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -802,9 +938,24 @@ final case class FloatConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.FloatConstant])
 }
 
-object FloatConstant  {
-  
-  
+object FloatConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.FloatConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.FloatConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.FloatConstant = {
+    var __value: _root_.scala.Float = 0.0f
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 13 =>
+          __value = _input__.readFloat()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.FloatConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -864,9 +1015,24 @@ final case class DoubleConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.DoubleConstant])
 }
 
-object DoubleConstant  {
-  
-  
+object DoubleConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.DoubleConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.DoubleConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.DoubleConstant = {
+    var __value: _root_.scala.Double = 0.0
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 9 =>
+          __value = _input__.readDouble()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.DoubleConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -926,9 +1092,24 @@ final case class StringConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.StringConstant])
 }
 
-object StringConstant  {
-  
-  
+object StringConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.StringConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.StringConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.StringConstant = {
+    var __value: _root_.scala.Predef.String = ""
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __value = _input__.readStringRequireUtf8()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.StringConstant(
+        value = __value
+    )
+  }
   
   
   
@@ -960,9 +1141,20 @@ final case class NullConstant(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.NullConstant])
 }
 
-object NullConstant  {
-  
-  
+object NullConstant  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.NullConstant] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.NullConstant] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.NullConstant = {
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.NullConstant(
+    )
+  }
   
   
   

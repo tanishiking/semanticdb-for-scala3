@@ -44,17 +44,34 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
       case d: Defn.Def if d.name.value.startsWith("messageReads") =>
         Patch.replaceTree(d, "")
 
-      // Replace `_root_.com.google.protobuf.CodedOutputStream` with
-      // `SemanticdbOutputStream` to drop the dependency to `com.google.protobuf`
+      // Replace `_root_.com.google.protobuf.Coded(Input|Output)Stream` with
+      // `Semanticdb(Input|Output)Stream` to drop the dependency to `com.google.protobuf`
+      case t @ Term.Select(_, name) if name.value == "CodedInputStream" =>
+        Patch.replaceTree(t, "SemanticdbInputStream")
+      case t @ Type.Select(_, name) if name.value == "CodedInputStream" =>
+        Patch.replaceTree(t, "SemanticdbInputStream")
+
       case t @ Term.Select(_, name) if name.value == "CodedOutputStream" =>
         Patch.replaceTree(t, "SemanticdbOutputStream")
       case t @ Type.Select(_, name) if name.value == "CodedOutputStream" =>
         Patch.replaceTree(t, "SemanticdbOutputStream")
 
-      // Remove companion accessor whose return type is `_root_.scalapb.GeneratedEnumCompanion`
-      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L42
-      case d: Defn.Def if companionPattern.matcher(d.name.value).matches() =>
-        Patch.replaceTree(d, "")
+      case s @ Term.Select(_, qual) if qual.value == "LiteParser" =>
+        Patch.replaceTree(s, "LiteParser")
+
+      case d: Defn.Def
+          if companionPattern
+            .matcher(d.name.value)
+            .matches() =>
+        if (d.name.value == "messageCompanion") {
+          d.collect {
+            case s @ Type.Select(_, name)
+                if name.value == "GeneratedMessageCompanion" =>
+              Patch.replaceTree(s, "SemanticdbGeneratedMessageCompanion")
+          }.asPatch
+        } else {
+          Patch.replaceTree(d, "")
+        }
       case v: Defn.Val
           if v.pats
             .exists(pat => companionPattern.matcher(pat.syntax).matches()) =>
@@ -70,13 +87,9 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
             .exists(pat => descriptorPattern.matcher(pat.syntax).matches()) =>
         Patch.replaceTree(v, "")
 
-      // Remove `parseFrom` that has a lot of dependencies to `scalapb-runtime`
-      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ParseFromGenerator.scala
-      //
       // Remove `toProtoString` that depends on `scalapb.TextFormat`
       // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L1390-L1392
-      case d: Defn.Def
-          if d.name.value == "parseFrom" || d.name.value == "toProtoString" =>
+      case d: Defn.Def if d.name.value == "toProtoString" =>
         Patch.replaceTree(d, "")
 
       // - Remove extends from scalapb classes
@@ -129,6 +142,14 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
           init.tpe match {
             case s: Type.Select =>
               extendsReplaces.get(s.name.value)
+            case app @ Type.Apply(Type.Select(_, name), _)
+                if name.value == "GeneratedMessageCompanion" =>
+              Some(
+                app.syntax.replaceAll(
+                  "scalapb.GeneratedMessageCompanion",
+                  "SemanticdbGeneratedMessageCompanion"
+                )
+              )
             case _ => None
           }
         }
@@ -152,7 +173,7 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
     tpe.map(isFromScalaPb).getOrElse(false)
   }
 
-  private def isFromScalaPb(tpe: Type): Boolean = {
+  private def isFromScalaPb(tpe: Tree): Boolean = {
     def loop(typ: Tree): Boolean = {
       typ match {
         case Type.Name(name) => name == "scalapb"

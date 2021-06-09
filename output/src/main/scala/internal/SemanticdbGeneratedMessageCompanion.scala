@@ -1,5 +1,7 @@
 package dotty.tools.dotc.semanticdb.internal
 
+import java.io.InputStream
+
 // https://github.com/scalapb/ScalaPB/blob/194463272125b872b99d4902b7712355a53e96c4/scalapb-runtime/src/main/scala/scalapb/GeneratedMessageCompanion.scala#L61-L68
 trait SemanticdbGeneratedOneof extends Any with Product with Serializable {
   type ValueType
@@ -13,6 +15,17 @@ trait SemanticdbGeneratedOneof extends Any with Product with Serializable {
 // https://github.com/scalapb/ScalaPB/blob/194463272125b872b99d4902b7712355a53e96c4/scalapb-runtime/src/main/scala/scalapb/GeneratedMessageCompanion.scala#L72-L138
 trait SemanticdbGeneratedMessage extends Any with Product with Serializable {
   def serializedSize: Int
+
+  def writeTo(output: SemanticdbOutputStream): Unit
+
+  /** Serializes the messgae and returns a byte array containing its raw bytes */
+  final def toByteArray: Array[Byte] = {
+    val a = new Array[Byte](serializedSize)
+    val outputStream = SemanticdbOutputStream.newInstance(a)
+    writeTo(outputStream)
+    outputStream.checkNoSpaceLeft()
+    a
+  }
 }
 
 trait SemanticdbGeneratedSealedOneof
@@ -46,4 +59,22 @@ trait SemanticdbUnrecognizedEnum extends SemanticdbGeneratedEnum {
   def index = -1
 
   override def isUnrecognized: Boolean = true
+}
+
+trait SemanticdbGeneratedMessageCompanion[A <: SemanticdbGeneratedMessage]
+    extends Serializable {
+  self =>
+  type ValueType = A
+
+  /** Parses a message from a CodedInputStream. */
+  def parseFrom(input: SemanticdbInputStream): A
+
+  def parseFrom(input: Array[Byte]): A = parseFrom(
+    SemanticdbInputStream.newInstance(input)
+  )
+
+  /** Merges the given message with the additional fields in the steam. */
+  def merge(a: A, input: SemanticdbInputStream): A = {
+    parseFrom(a.toByteArray ++ parseFrom(input).toByteArray)
+  }
 }

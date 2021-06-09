@@ -93,9 +93,36 @@ final case class Range(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Range])
 }
 
-object Range  {
-  
-  
+object Range  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Range] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Range] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Range = {
+    var __startLine: _root_.scala.Int = 0
+    var __startCharacter: _root_.scala.Int = 0
+    var __endLine: _root_.scala.Int = 0
+    var __endCharacter: _root_.scala.Int = 0
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 8 =>
+          __startLine = _input__.readInt32()
+        case 16 =>
+          __startCharacter = _input__.readInt32()
+        case 24 =>
+          __endLine = _input__.readInt32()
+        case 32 =>
+          __endCharacter = _input__.readInt32()
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Range(
+        startLine = __startLine,
+        startCharacter = __startCharacter,
+        endLine = __endLine,
+        endCharacter = __endCharacter
+    )
+  }
   
   
   

@@ -64,9 +64,28 @@ final case class Synthetic(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Synthetic])
 }
 
-object Synthetic  {
-  
-  
+object Synthetic  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Synthetic] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Synthetic] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Synthetic = {
+    var __range: _root_.scala.Option[dotty.tools.dotc.semanticdb.Range] = _root_.scala.None
+    var __tree: _root_.scala.Option[dotty.tools.dotc.semanticdb.TreeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __range = Option(__range.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.Range](_input__))(LiteParser.readMessage(_input__, _)))
+        case 18 =>
+          __tree = _root_.scala.Some(__tree.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TreeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Synthetic(
+        range = __range,
+        tree = dotty.tools.dotc.semanticdb.Synthetic._typemapper_tree.toCustom(__tree.getOrElse(dotty.tools.dotc.semanticdb.TreeMessage.defaultInstance))
+    )
+  }
   
   
   

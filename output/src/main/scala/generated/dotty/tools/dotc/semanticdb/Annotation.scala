@@ -50,9 +50,24 @@ final case class Annotation(
     // @@protoc_insertion_point(GeneratedMessage[dotty.tools.dotc.semanticdb.Annotation])
 }
 
-object Annotation  {
-  
-  
+object Annotation  extends SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Annotation] {
+  implicit def messageCompanion: SemanticdbGeneratedMessageCompanion[dotty.tools.dotc.semanticdb.Annotation] = this
+  def parseFrom(`_input__`: SemanticdbInputStream): dotty.tools.dotc.semanticdb.Annotation = {
+    var __tpe: _root_.scala.Option[dotty.tools.dotc.semanticdb.TypeMessage] = _root_.scala.None
+    var _done__ = false
+    while (!_done__) {
+      val _tag__ = _input__.readTag()
+      _tag__ match {
+        case 0 => _done__ = true
+        case 10 =>
+          __tpe = _root_.scala.Some(__tpe.fold(LiteParser.readMessage[dotty.tools.dotc.semanticdb.TypeMessage](_input__))(LiteParser.readMessage(_input__, _)))
+        case tag => _input__.skipField(tag)
+      }
+    }
+    dotty.tools.dotc.semanticdb.Annotation(
+        tpe = dotty.tools.dotc.semanticdb.Annotation._typemapper_tpe.toCustom(__tpe.getOrElse(dotty.tools.dotc.semanticdb.TypeMessage.defaultInstance))
+    )
+  }
   
   
   
