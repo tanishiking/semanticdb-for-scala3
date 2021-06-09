@@ -13,7 +13,7 @@ sealed abstract class Schema(val value: _root_.scala.Int)  extends SemanticdbGen
   def isSemanticdb3: _root_.scala.Boolean = false
   def isSemanticdb4: _root_.scala.Boolean = false
   
-  
+  final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.Schema.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.Schema.Recognized])
 }
 
 object Schema  {

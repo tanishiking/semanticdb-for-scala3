@@ -97,7 +97,7 @@ object SymbolOccurrence  {
     def isReference: _root_.scala.Boolean = false
     def isDefinition: _root_.scala.Boolean = false
     
-    
+    final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.SymbolOccurrence.Role.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.SymbolOccurrence.Role.Recognized])
   }
   
   object Role  {

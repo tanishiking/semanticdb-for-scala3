@@ -99,7 +99,7 @@ object Diagnostic  {
     def isInformation: _root_.scala.Boolean = false
     def isHint: _root_.scala.Boolean = false
     
-    
+    final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.Diagnostic.Severity.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.Diagnostic.Severity.Recognized])
   }
   
   object Severity  {

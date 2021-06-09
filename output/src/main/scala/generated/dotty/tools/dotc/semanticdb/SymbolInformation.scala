@@ -224,7 +224,7 @@ object SymbolInformation  {
     def isTrait: _root_.scala.Boolean = false
     def isInterface: _root_.scala.Boolean = false
     
-    
+    final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.SymbolInformation.Kind.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.SymbolInformation.Kind.Recognized])
   }
   
   object Kind  {
@@ -386,7 +386,7 @@ object SymbolInformation  {
     def isEnum: _root_.scala.Boolean = false
     def isDefault: _root_.scala.Boolean = false
     
-    
+    final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.SymbolInformation.Property.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.SymbolInformation.Property.Recognized])
   }
   
   object Property  {

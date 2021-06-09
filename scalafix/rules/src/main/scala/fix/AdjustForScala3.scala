@@ -15,6 +15,9 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
   )
   override def fix(implicit doc: SyntacticDocument): Patch = {
     doc.tree.collect {
+      // Replace `@transient` annotation with `@sharable`
+      // https://github.com/scalameta/metals/discussions/2593#discussioncomment-529949
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L544
       case annot @ Mod.Annot(Init(Type.Name(name), _, _))
           if name == "transient" =>
         Patch.replaceTree(annot, "@sharable")
@@ -23,22 +26,33 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
           if name == "SerialVersionUID" =>
         Patch.replaceTree(annot, "")
 
+      // Replace `_root_.scalapb.TypeMapper` with `SemanticdbTypeMapper`
+      // to remove the dependency to `scalapb-runtime`
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L972-L990
       case select @ Type.Select(_, name) if name.value == "TypeMapper" =>
         Patch.replaceTree(select, "SemanticdbTypeMapper")
 
-      // remove getter
+      // Remove getter whose signature is
+      // `def getField(__field: _root_.scalapb.descriptors.FieldDescriptor): _root_.scalapb.descriptors.PValue`
+      // to remove dependency to `scalapb-runtime`
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L396
       case d: Defn.Def if d.name.value.startsWith("getField") =>
         Patch.replaceTree(d, "")
 
+      // Remove messageReads
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L808
       case d: Defn.Def if d.name.value.startsWith("messageReads") =>
         Patch.replaceTree(d, "")
 
+      // Replace `_root_.com.google.protobuf.CodedOutputStream` with
+      // `SemanticdbOutputStream` to drop the dependency to `com.google.protobuf`
       case t @ Term.Select(_, name) if name.value == "CodedOutputStream" =>
         Patch.replaceTree(t, "SemanticdbOutputStream")
       case t @ Type.Select(_, name) if name.value == "CodedOutputStream" =>
         Patch.replaceTree(t, "SemanticdbOutputStream")
 
-      // Remove companion accessor
+      // Remove companion accessor whose return type is `_root_.scalapb.GeneratedEnumCompanion`
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L42
       case d: Defn.Def if companionPattern.matcher(d.name.value).matches() =>
         Patch.replaceTree(d, "")
       case v: Defn.Val
@@ -46,7 +60,9 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
             .exists(pat => companionPattern.matcher(pat.syntax).matches()) =>
         Patch.replaceTree(v, "")
 
-      // Remove descriptor
+      // Remove descriptor which depends on `scalapb` and `com.google.protobuf`
+      // https://developers.google.com/protocol-buffers/docs/reference/cpp/google.protobuf.descriptor
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L1471-L1524
       case d: Defn.Def if descriptorPattern.matcher(d.name.value).matches() =>
         Patch.replaceTree(d, "")
       case v: Defn.Val
@@ -54,11 +70,21 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
             .exists(pat => descriptorPattern.matcher(pat.syntax).matches()) =>
         Patch.replaceTree(v, "")
 
+      // Remove `parseFrom` that has a lot of dependencies to `scalapb-runtime`
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ParseFromGenerator.scala
+      //
+      // Remove `toProtoString` that depends on `scalapb.TextFormat`
+      // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L1390-L1392
       case d: Defn.Def
-          if d.name.value == "parseFrom" || d.name.value == "toProtoString" || d.name.value == "asRecognized" =>
+          if d.name.value == "parseFrom" || d.name.value == "toProtoString" =>
         Patch.replaceTree(d, "")
 
-      // Remove extends from scalapb
+      // - Remove extends from scalapb classes
+      //   - from `object MethodSignature extends scalapb.GeneratedMessageCompanion[dotty.tools.dotc.semanticdb.MethodSignature]`
+      //   - to `object MethodSignature`
+      // - Replace scalapb classes into our hand-crafted classes
+      //   - see `extendsReplaces`
+      // - Add `derives CanEqual` to classes and traits
       case defn: Defn.Trait =>
         val derive = deriveCanEqual(defn.templ)
         if (extendsScalapbClass(defn.templ))
@@ -72,8 +98,15 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
       case defn: Defn.Object if extendsScalapbClass(defn.templ) =>
         removeScalapbExtends(defn.templ)
     }.asPatch
-
   }
+
+  private val extendsReplaces = Map(
+    "GeneratedOneof" -> "SemanticdbGeneratedOneof",
+    "GeneratedMessage" -> "SemanticdbGeneratedMessage",
+    "GeneratedSealedOneof" -> "SemanticdbGeneratedSealedOneof",
+    "GeneratedEnum" -> "SemanticdbGeneratedEnum",
+    "UnrecognizedEnum" -> "SemanticdbUnrecognizedEnum"
+  )
 
   private def deriveCanEqual(templ: Template): Patch = {
     templ.tokens
@@ -114,14 +147,6 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
       }
       .getOrElse(Patch.empty)
   }
-
-  private val extendsReplaces = Map(
-    "GeneratedOneof" -> "SemanticdbGeneratedOneof",
-    "GeneratedMessage" -> "SemanticdbGeneratedMessage",
-    "GeneratedSealedOneof" -> "SemanticdbGeneratedSealedOneof",
-    "GeneratedEnum" -> "SemanticdbGeneratedEnum",
-    "UnrecognizedEnum" -> "SemanticdbUnrecognizedEnum"
-  )
 
   private def tryIsFromScalaPb(tpe: Option[Type]): Boolean = {
     tpe.map(isFromScalaPb).getOrElse(false)

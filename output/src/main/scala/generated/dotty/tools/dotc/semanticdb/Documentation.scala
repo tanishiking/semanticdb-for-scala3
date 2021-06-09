@@ -84,7 +84,7 @@ object Documentation  {
     def isScaladoc: _root_.scala.Boolean = false
     def isKdoc: _root_.scala.Boolean = false
     
-    
+    final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.Documentation.Format.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.Documentation.Format.Recognized])
   }
   
   object Format  {

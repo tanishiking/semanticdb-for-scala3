@@ -13,7 +13,7 @@ sealed abstract class Language(val value: _root_.scala.Int)  extends SemanticdbG
   def isScala: _root_.scala.Boolean = false
   def isJava: _root_.scala.Boolean = false
   
-  
+  final def asRecognized: _root_.scala.Option[dotty.tools.dotc.semanticdb.Language.Recognized] = if (isUnrecognized) _root_.scala.None else _root_.scala.Some(this.asInstanceOf[dotty.tools.dotc.semanticdb.Language.Recognized])
 }
 
 object Language  {
