@@ -18,7 +18,8 @@ trait SemanticdbGeneratedMessage extends Any with Product with Serializable {
 
   def writeTo(output: SemanticdbOutputStream): Unit
 
-  /** Serializes the messgae and returns a byte array containing its raw bytes */
+  /** Serializes the messgae and returns a byte array containing its raw bytes
+    */
   final def toByteArray: Array[Byte] = {
     val a = new Array[Byte](serializedSize)
     val outputStream = SemanticdbOutputStream.newInstance(a)
