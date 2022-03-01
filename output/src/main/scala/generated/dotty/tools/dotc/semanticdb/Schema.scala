@@ -20,6 +20,7 @@ sealed abstract class Schema(val value: _root_.scala.Int)  extends SemanticdbGen
 object Schema  {
   sealed trait Recognized extends Schema
   
+  
   @SerialVersionUID(0L)
   case object LEGACY extends Schema(0) with Schema.Recognized {
     val index = 0
@@ -43,7 +44,6 @@ object Schema  {
   
   @SerialVersionUID(0L)
   final case class Unrecognized(unrecognizedValue: _root_.scala.Int)  extends Schema(unrecognizedValue) with SemanticdbUnrecognizedEnum
-  
   lazy val values = scala.collection.immutable.Seq(LEGACY, SEMANTICDB3, SEMANTICDB4)
   def fromValue(__value: _root_.scala.Int): Schema = __value match {
     case 0 => LEGACY
