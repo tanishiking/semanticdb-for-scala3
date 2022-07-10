@@ -35,7 +35,7 @@ lazy val output = project
   .in(file("output"))
   .settings(
     name := "output",
-    scalaVersion := "3.1.1",
+    scalaVersion := "3.1.3",
     Compile / scalafix / unmanagedSources :=
       (Compile / unmanagedSources).value
         .filterNot(file => file.getParent().endsWith("internal"))
