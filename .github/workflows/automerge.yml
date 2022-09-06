@@ -9,6 +9,8 @@ on:
     types:
       - completed
   status: {}
+env:
+  GITHUB_TOKEN: ${{ secrets.TANIGHIKING_GH_TOKEN_FOR_TEST }}
 jobs:
   automerge:
     runs-on: ubuntu-latest
@@ -19,4 +21,3 @@ jobs:
         env:
           MERGE_FILTER_AUTHOR: scala-steward
           MERGE_DELETE_BRANCH: true
-          GITHUB_TOKEN: ${{ secrets.TANIGHIKING_GH_TOKEN_FOR_TEST }}
