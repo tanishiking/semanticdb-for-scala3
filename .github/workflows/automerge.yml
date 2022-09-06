@@ -17,6 +17,6 @@ jobs:
         name: automerge
         uses: "pascalgn/automerge-action@v0.15.3"
         env:
+          GITHUB_TOKEN: ${{ secrets.TANIGHIKING_GH_TOKEN_FOR_TEST }}
           MERGE_FILTER_AUTHOR: scala-steward
           MERGE_DELETE_BRANCH: true
-          GITHUB_TOKEN: ${{ secrets.TANIGHIKING_GH_TOKEN_FOR_TEST }}
