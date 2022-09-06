@@ -10,6 +10,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: hmarr/auto-approve-action@v2
-        if: github.event.label.name == 'automerge' && github.actor == 'tanishiking'
+        if: contains(github.event.pull_request.labels.*.name, 'automerge') && github.actor == 'tanishiking'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
