@@ -1,11 +1,6 @@
 name: Auto approve
 
 on:
-  workflow_dispatch:
-    inputs:
-      pullRequestNumber:
-        description: Pull request number to auto-approve
-        required: true
   pull_request_target:
 
 jobs:
@@ -15,6 +10,6 @@ jobs:
       pull-requests: write
     steps:
       - uses: hmarr/auto-approve-action@v2
+        if: github.event.label.name == 'automerge' && github.actor == 'tanishiking'
         with:
           github-token: ${{secrets.GITHUB_TOKEN}}
-          pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
