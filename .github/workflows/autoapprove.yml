@@ -15,7 +15,7 @@ jobs:
       pull-requests: write
     steps:
       - uses: hmarr/auto-approve-action@v2
-        if: github.actor == 'scala-steward' && github.event.label.name == 'auto-merge'
+        if: github.actor == 'scala-steward' && github.event.label.name == 'automerge'
         with:
           github-token: ${{secrets.TANISHIKING_GH_TOKEN_FOR_TEST}}
           pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
