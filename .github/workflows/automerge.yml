@@ -1,0 +1,22 @@
+name: automerge
+on:
+  pull_request:
+    types:
+      - labeled
+      - opened
+      - edited
+  check_suite:
+    types:
+      - completed
+  status: {}
+jobs:
+  automerge:
+    runs-on: ubuntu-latest
+    steps:
+      - id: automerge
+        name: automerge
+        uses: "pascalgn/automerge-action@v0.15.3"
+        env:
+          MERGE_FILTER_AUTHOR: scala-steward
+          MERGE_DELETE_BRANCH: true
+          GITHUB_TOKEN: "${{ secrets.TANIGHIKING_GH_TOKEN_FOR_TEST }}"
