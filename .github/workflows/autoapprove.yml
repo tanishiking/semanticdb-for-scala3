@@ -16,5 +16,5 @@ jobs:
     steps:
       - uses: hmarr/auto-approve-action@v2
         with:
-          github-token: ${{secrets.TANISHIKING_GH_TOKEN_FOR_TEST}}
+          github-token: ${{secrets.GITHUB_TOKEN}}
           pull-request-number: ${{ github.event.inputs.pullRequestNumber }}
