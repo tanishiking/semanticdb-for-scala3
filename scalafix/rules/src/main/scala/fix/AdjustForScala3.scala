@@ -15,6 +15,10 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
   )
   override def fix(implicit doc: SyntacticDocument): Patch = {
     doc.tree.collect {
+      // Replace `private[this]` in compiler with simply `private`
+      case priv: Mod.Private if priv.within.isInstanceOf[Term.This] =>
+        Patch.replaceTree(priv, "private")
+      // Replace `._` import with `.*`
       case im: Importee.Wildcard =>
         Patch.replaceTree(im, "*")
       // Replace `@transient` annotation with `@sharable`
