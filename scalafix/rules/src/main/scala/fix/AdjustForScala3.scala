@@ -15,6 +15,12 @@ class AdjustForScala3 extends SyntacticRule("AdjustForScala3") {
   )
   override def fix(implicit doc: SyntacticDocument): Patch = {
     doc.tree.collect {
+      // Replace `private[this]` in compiler with simply `private`
+      case priv: Mod.Private if priv.within.isInstanceOf[Term.This] =>
+        Patch.replaceTree(priv, "private")
+      // Replace `._` import with `.*`
+      case im: Importee.Wildcard =>
+        Patch.replaceTree(im, "*")
       // Replace `@transient` annotation with `@sharable`
       // https://github.com/scalameta/metals/discussions/2593#discussioncomment-529949
       // https://github.com/scalapb/ScalaPB/blob/1159f1738efcb4cb0a620a4e6f14f6489710b5d1/compiler-plugin/src/main/scala/scalapb/compiler/ProtobufGenerator.scala#L544

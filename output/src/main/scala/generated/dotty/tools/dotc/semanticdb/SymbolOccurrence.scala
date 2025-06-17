@@ -5,7 +5,7 @@
 // Protofile syntax: PROTO3
 
 package dotty.tools.dotc.semanticdb
-import dotty.tools.dotc.semanticdb.internal._
+import dotty.tools.dotc.semanticdb.internal.*
 import scala.annotation.internal.sharable
 
 @SerialVersionUID(0L)
@@ -15,8 +15,8 @@ final case class SymbolOccurrence(
     role: dotty.tools.dotc.semanticdb.SymbolOccurrence.Role = dotty.tools.dotc.semanticdb.SymbolOccurrence.Role.UNKNOWN_ROLE
     )  extends SemanticdbGeneratedMessage  derives CanEqual {
     @transient @sharable
-    private[this] var __serializedSizeMemoized: _root_.scala.Int = 0
-    private[this] def __computeSerializedSize(): _root_.scala.Int = {
+    private var __serializedSizeMemoized: _root_.scala.Int = 0
+    private def __computeSerializedSize(): _root_.scala.Int = {
       var __size = 0
       if (range.isDefined) {
         val __value = range.get

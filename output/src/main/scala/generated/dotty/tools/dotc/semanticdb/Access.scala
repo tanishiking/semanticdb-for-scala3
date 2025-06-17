@@ -5,7 +5,7 @@
 // Protofile syntax: PROTO3
 
 package dotty.tools.dotc.semanticdb
-import dotty.tools.dotc.semanticdb.internal._
+import dotty.tools.dotc.semanticdb.internal.*
 import scala.annotation.internal.sharable
 
 sealed trait Access  extends SemanticdbGeneratedSealedOneof  derives CanEqual {
@@ -50,8 +50,8 @@ final case class AccessMessage(
     sealedValue: dotty.tools.dotc.semanticdb.AccessMessage.SealedValue = dotty.tools.dotc.semanticdb.AccessMessage.SealedValue.Empty
     )  extends SemanticdbGeneratedMessage  derives CanEqual {
     @transient @sharable
-    private[this] var __serializedSizeMemoized: _root_.scala.Int = 0
-    private[this] def __computeSerializedSize(): _root_.scala.Int = {
+    private var __serializedSizeMemoized: _root_.scala.Int = 0
+    private def __computeSerializedSize(): _root_.scala.Int = {
       var __size = 0
       if (sealedValue.privateAccess.isDefined) {
         val __value = sealedValue.privateAccess.get
@@ -379,8 +379,8 @@ final case class PrivateWithinAccess(
     symbol: _root_.scala.Predef.String = ""
     )  extends dotty.tools.dotc.semanticdb.Access.NonEmpty with SemanticdbGeneratedMessage  derives CanEqual {
     @transient @sharable
-    private[this] var __serializedSizeMemoized: _root_.scala.Int = 0
-    private[this] def __computeSerializedSize(): _root_.scala.Int = {
+    private var __serializedSizeMemoized: _root_.scala.Int = 0
+    private def __computeSerializedSize(): _root_.scala.Int = {
       var __size = 0
       
       {
@@ -539,8 +539,8 @@ final case class ProtectedWithinAccess(
     symbol: _root_.scala.Predef.String = ""
     )  extends dotty.tools.dotc.semanticdb.Access.NonEmpty with SemanticdbGeneratedMessage  derives CanEqual {
     @transient @sharable
-    private[this] var __serializedSizeMemoized: _root_.scala.Int = 0
-    private[this] def __computeSerializedSize(): _root_.scala.Int = {
+    private var __serializedSizeMemoized: _root_.scala.Int = 0
+    private def __computeSerializedSize(): _root_.scala.Int = {
       var __size = 0
       
       {
