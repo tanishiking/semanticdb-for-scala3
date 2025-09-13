@@ -14,4 +14,3 @@ object SemanticdbTypeMapper {
       def toBase(custom: CustomType): BaseType = customToBase(custom)
     }
 }
-

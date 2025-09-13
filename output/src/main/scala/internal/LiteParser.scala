@@ -1,6 +1,5 @@
 package dotty.tools.dotc.semanticdb.internal
 
-
 object LiteParser {
 
   def readMessage[A <: SemanticdbGeneratedMessage](

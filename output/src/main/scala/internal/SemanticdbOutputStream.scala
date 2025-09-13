@@ -22,7 +22,10 @@ object SemanticdbOutputStream {
     newInstance(output, DEFAULT_BUFFER_SIZE)
   }
 
-  def newInstance(output: OutputStream, bufferSize: Int): SemanticdbOutputStream = {
+  def newInstance(
+      output: OutputStream,
+      bufferSize: Int
+  ): SemanticdbOutputStream = {
     new SemanticdbOutputStream(output, Array.ofDim[Byte](bufferSize))
   }
 
@@ -200,15 +203,15 @@ object SemanticdbOutputStream {
   }
 
   def computeRawVarint64Size(value: Long): Int = {
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 7)) == 0) return 1
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 14)) == 0) return 2
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 21)) == 0) return 3
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 28)) == 0) return 4
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 35)) == 0) return 5
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 42)) == 0) return 6
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 49)) == 0) return 7
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 56)) == 0) return 8
-    if ((value & (0xFFFFFFFFFFFFFFFFL << 63)) == 0) return 9
+    if ((value & (0xffffffffffffffffL << 7)) == 0) return 1
+    if ((value & (0xffffffffffffffffL << 14)) == 0) return 2
+    if ((value & (0xffffffffffffffffL << 21)) == 0) return 3
+    if ((value & (0xffffffffffffffffL << 28)) == 0) return 4
+    if ((value & (0xffffffffffffffffL << 35)) == 0) return 5
+    if ((value & (0xffffffffffffffffL << 42)) == 0) return 6
+    if ((value & (0xffffffffffffffffL << 49)) == 0) return 7
+    if ((value & (0xffffffffffffffffL << 56)) == 0) return 8
+    if ((value & (0xffffffffffffffffL << 63)) == 0) return 9
     10
   }
 
@@ -407,11 +410,11 @@ class SemanticdbOutputStream(output: OutputStream, buffer: Array[Byte]) {
   def writeRawVarint32(value0: Int): Unit = {
     var value = value0
     while (true) {
-      if ((value & ~0x7F) == 0) {
+      if ((value & ~0x7f) == 0) {
         writeRawByte(value)
         return
       } else {
-        writeRawByte((value & 0x7F) | 0x80)
+        writeRawByte((value & 0x7f) | 0x80)
         value >>>= 7
       }
     }
@@ -420,32 +423,32 @@ class SemanticdbOutputStream(output: OutputStream, buffer: Array[Byte]) {
   def writeRawVarint64(value0: Long): Unit = {
     var value = value0
     while (true) {
-      if ((value & ~0x7FL) == 0) {
+      if ((value & ~0x7fL) == 0) {
         writeRawByte(value.toInt)
         return
       } else {
-        writeRawByte((value.toInt & 0x7F) | 0x80)
+        writeRawByte((value.toInt & 0x7f) | 0x80)
         value >>>= 7
       }
     }
   }
 
   def writeRawLittleEndian32(value: Int): Unit = {
-    writeRawByte((value) & 0xFF)
-    writeRawByte((value >> 8) & 0xFF)
-    writeRawByte((value >> 16) & 0xFF)
-    writeRawByte((value >> 24) & 0xFF)
+    writeRawByte((value) & 0xff)
+    writeRawByte((value >> 8) & 0xff)
+    writeRawByte((value >> 16) & 0xff)
+    writeRawByte((value >> 24) & 0xff)
   }
 
   def writeRawLittleEndian64(value: Long): Unit = {
-    writeRawByte((value).toInt & 0xFF)
-    writeRawByte((value >> 8).toInt & 0xFF)
-    writeRawByte((value >> 16).toInt & 0xFF)
-    writeRawByte((value >> 24).toInt & 0xFF)
-    writeRawByte((value >> 32).toInt & 0xFF)
-    writeRawByte((value >> 40).toInt & 0xFF)
-    writeRawByte((value >> 48).toInt & 0xFF)
-    writeRawByte((value >> 56).toInt & 0xFF)
+    writeRawByte((value).toInt & 0xff)
+    writeRawByte((value >> 8).toInt & 0xff)
+    writeRawByte((value >> 16).toInt & 0xff)
+    writeRawByte((value >> 24).toInt & 0xff)
+    writeRawByte((value >> 32).toInt & 0xff)
+    writeRawByte((value >> 40).toInt & 0xff)
+    writeRawByte((value >> 48).toInt & 0xff)
+    writeRawByte((value >> 56).toInt & 0xff)
   }
 
   // def writeBytesNoTag(value: ByteString): Unit = {
