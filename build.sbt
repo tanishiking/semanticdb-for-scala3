@@ -6,7 +6,7 @@ val semanticdbProtoURL =
   "https://raw.githubusercontent.com/scalameta/scalameta/refs/tags/v%s/semanticdb/semanticdb/shared/src/main/proto/semanticdb.proto"
     .format(scalametaVersion)
 
-ThisBuild / scalaVersion := "2.13.16"
+ThisBuild / scalaVersion := "2.13.17"
 
 commands += Command.command("ci") { s =>
   s"check-protobuf" ::
